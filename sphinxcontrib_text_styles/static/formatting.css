@@ -1,0 +1,28 @@
+/* Base formatting classes */
+[class^="text-"], [class^="bg-"] {
+    transition: all 0.3s ease;
+    padding: 0.1em 0.2em;
+    border-radius: 3px;
+}
+
+/* Text Color classes */
+.text-red { color: red; }
+.text-blue { color: blue; }
+.text-green { color: green; }
+.text-yellow { color: yellow; }
+
+/* Background Color classes */
+.bg-red { background-color: #ffdddd; }
+.bg-blue { background-color: #ddeeff; }
+.bg-green { background-color: #ddffdd; }
+.bg-yellow { background-color: #ffffdd; }
+.bg-grey { background-color: #f0f0f0; }
+
+/* Text style classes */
+.text-strike { text-decoration: line-through; }
+.text-mono {
+    font-family: monospace;
+}
+.text-underline { text-decoration: underline; }
+.text-bold { font-weight: bold; }
+.text-italic { font-style: italic; }
