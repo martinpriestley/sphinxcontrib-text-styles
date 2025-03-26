@@ -6,54 +6,126 @@ sphinxcontrib_text_styles is an extension providing a number of basic text style
 roles, plus the ability to create alias roles with meaningful names. Styles have
 both HTML (CSS) and PDF (Latex) implementations.
 
+The aim is for users to be able to define character styles meaningful to their
+document, and have them render in HTML and PDF, without having to author CSS and
+Latex markup themselves.
+
 Built-in Styles
 ===============
+
+Basic Text Styles
+-----------------
+
+.. code-block:: rst
+
+    - :text-bold:`Bold text`
+    - :text-italic:`Italic text`
+    - :text-mono:`Monospaced text`
+    - :text-strike:`Strikethrough text`
+    - :text-underline:`Underlined text`
+
+- :text-bold:`Bold text`
+- :text-italic:`Italic text`
+- :text-mono:`Monospaced text`
+- :text-strike:`Strikethrough text`
+- :text-underline:`Underlined text`
 
 Text Colors
 -----------
 
 .. code-block:: rst
 
-    - :red:`Red text`
-    - :blue:`Blue text`
-    - :green:`Green text`
-    - :yellow:`Yellow text`
+    :text-red:`Red text`
+    :text-green:`Green text`
+    :text-blue:`Blue text`
+    :text-cyan:`Cyan text`
+    :text-magenta:`Magenta text`
+    :text-yellow:`Yellow text`
+    :text-black:`Black text`
+    :text-gray:`Gray text`
+    :text-white:`White text`
+    :text-darkgray:`Darkgray text`
+    :text-lightgray:`Lightgray text`
+    :text-brown:`Brown text`
+    :text-lime:`Lime text`
+    :text-olive:`Olive text`
+    :text-orange:`Orange text`
+    :text-pink:`Pink text`
+    :text-purple:`Purple text`
+    :text-teal:`Teal text`
+    :text-violet:`Violet text`
 
-- :red:`Red text`
-- :blue:`Blue text`
-- :green:`Green text`
-- :yellow:`Yellow text`
+
+- :text-red:`Red text`
+- :text-green:`Green text`
+- :text-blue:`Blue text`
+- :text-cyan:`Cyan text`
+- :text-magenta:`Magenta text`
+- :text-yellow:`Yellow text`
+- :text-black:`Black text`
+- :text-gray:`Gray text`
+- :text-white:`White text`
+- :text-darkgray:`Darkgray text`
+- :text-lightgray:`Lightgray text`
+- :text-brown:`Brown text`
+- :text-lime:`Lime text`
+- :text-olive:`Olive text`
+- :text-orange:`Orange text`
+- :text-pink:`Pink text`
+- :text-purple:`Purple text`
+- :text-teal:`Teal text`
+- :text-violet:`Violet text`
 
 Background Colors
 -----------------
 
 .. code-block:: rst
 
-    - :bg-red:`Red background`
-    - :bg-blue:`Blue background`
-    - :bg-green:`Green background`
-    - :bg-yellow:`Yellow background`
-    - :bg-grey:`Grey background`
+    :bg-red:`Red background`
+    :bg-green:`Green background`
+    :bg-blue:`Blue background`
+    :bg-cyan:`Cyan background`
+    :bg-magenta:`Magenta background`
+    :bg-yellow:`Yellow background`
+    :bg-black:`Black background`
+    :bg-gray:`Gray background`
+    :bg-white:`White background`
+    :bg-darkgray:`Darkgray background`
+    :bg-lightgray:`Lightgray background`
+    :bg-brown:`Brown background`
+    :bg-lime:`Lime background`
+    :bg-olive:`Olive background`
+    :bg-orange:`Orange background`
+    :bg-pink:`Pink background`
+    :bg-purple:`Purple background`
+    :bg-teal:`Teal background`
+    :bg-violet:`Violet background`
 
 - :bg-red:`Red background`
-- :bg-blue:`Blue background`
 - :bg-green:`Green background`
+- :bg-blue:`Blue background`
+- :bg-cyan:`Cyan background`
+- :bg-magenta:`Magenta background`
 - :bg-yellow:`Yellow background`
-- :bg-grey:`Grey background`
-
-Basic Text Styles
------------------
-
-- :bold:`Bold text`
-- :italic:`Italic text`
-- :mono:`Monospaced text`
-- :strike:`Strikethrough text`
-- :underline:`Underlined text`
+- :bg-black:`Black background`
+- :bg-gray:`Gray background`
+- :bg-white:`White background`
+- :bg-darkgray:`Darkgray background`
+- :bg-lightgray:`Lightgray background`
+- :bg-brown:`Brown background`
+- :bg-lime:`Lime background`
+- :bg-olive:`Olive background`
+- :bg-orange:`Orange background`
+- :bg-pink:`Pink background`
+- :bg-purple:`Purple background`
+- :bg-teal:`Teal background`
+- :bg-violet:`Violet background`
 
 Customizing Roles and Styles
 ============================
 
-In your ``conf.py``, you can create custom roles that use one or more styles:
+In your ``conf.py``, you can define roles that use one or more of the basic
+styles:
 
 .. code-block:: python
 

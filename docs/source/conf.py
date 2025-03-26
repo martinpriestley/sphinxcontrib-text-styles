@@ -11,7 +11,7 @@ extensions = [
 
 # Extension-specific configuration
 text_formatting_roles = {
-    'important': ['text-red', 'text-italic', 'text-bold', 'text-underline'],
+    'important': ['text-red', 'text-italic', 'text-bold', 'text-underline', 'bg-black'],
     'success': ['text-green'],
     'error': ['text-red'],
 }

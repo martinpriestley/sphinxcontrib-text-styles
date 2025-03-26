@@ -23,45 +23,40 @@ def create_role_mapping(app, config):
     """
     Create role mappings based on configuration
     """
+
+    # These are colours with names understood by both CSS and Latex. They may
+    # not render exactly the same in both.
+    colours = [
+        'red', 'green', 'blue', 'cyan', 'magenta', 'yellow', 'black', 'gray',
+        'white', 'darkgray', 'lightgray', 'brown', 'lime', 'olive', 'orange',
+        'pink', 'purple', 'teal', 'violet' ]
+
     # Default roles
     default_roles = {
-        'red'       : ['text-red'],
-        'blue'      : ['text-blue'],
-        'green'     : ['text-green'],
-        'yellow'    : ['text-yellow'],
-
-        'bg-red'    : ['bg-red'],
-        'bg-blue'   : ['bg-blue'],
-        'bg-green'  : ['bg-green'],
-        'bg-yellow' : ['bg-yellow'],
-        'bg-grey'   : ['bg-grey'],
-
-        'strike'    : ['text-strike'],
-        'mono'      : ['text-mono'],
-        'underline' : ['text-underline'],
-        'bold'      : ['text-bold'],
-        'italic'    : ['text-italic'],
+        'text-strike'    : ['text-strike'],
+        'text-mono'      : ['text-mono'],
+        'text-underline' : ['text-underline'],
+        'text-bold'      : ['text-bold'],
+        'text-italic'    : ['text-italic'],
     }
 
     # Implementation of styles in Latex markup
     latex_styles = {
-        'text-red'       : r'\textcolor{red}{',
-        'text-blue'      : r'\textcolor{blue}{',
-        'text-green'     : r'\textcolor{green}{',
-        'text-yellow'    : r'\textcolor{yellow}{',
-
-        'bg-red'         : r'\colorbox{red!20}{',
-        'bg-blue'        : r'\colorbox{blue!20}{',
-        'bg-green'       : r'\colorbox{green!20}{',
-        'bg-yellow'      : r'\colorbox{yellow!20}{',
-        'bg-grey'        : r'\colorbox{gray!10}{',
-
         'text-strike'    : r'\sout{',
         'text-mono'      : r'\texttt{',
         'text-underline' : r'\underline{',
         'text-bold'      : r'\textbf{',
         'text-italic'    : r'\textit{',
     }
+
+    for c in colours:
+        default_roles[f"text-{c}"] = [f"text-{c}"]
+        default_roles[f"bg-{c}"]   = [f"bg-{c}"]
+        latex_styles[f"text-{c}"]  = f"\\textcolor{{{c}}}{{"
+        latex_styles[f"bg-{c}"]    = f"\\colorbox{{{c}!20}}{{"
+
+    # Some colours look poor when faded
+    latex_styles["bg-black"]    = r'\colorbox{black}{'
 
     # Merge default roles with user-defined roles
     role_mapping = default_roles.copy()
@@ -80,26 +75,25 @@ def create_role_mapping(app, config):
 # Latex bits
 # ==============================================================================
 
-def add_preamble(app, filename):
+def add_packages(app, filename):
     """
-    Add custom LaTeX preamble to support inline formatting
+    Add LaTeX packages to support inline formatting
     """
-    preamble = r"""
-    % Custom inline formatting
-    \usepackage{color}
-    \usepackage{soul}  % for background colours
-    \usepackage{ulem}  % for strikethrough
-    \usepackage{listings}  % for monospace
-    """
-    for package in ['color', 'soul', 'ulem', 'listings']:
+    packages = [
+        'color',
+        'soul',         # for background colours
+        'ulem',         # for strikethrough
+        'listings',     # for monospace
+    ]
+    for package in packages:
         app.add_latex_package(package)
 
 class CustomLaTeXTranslator(LaTeXTranslator):
 
     def visit_inline(self, node):
         # Retrieve the latex style mapping
-        text_styles  = self.document.settings.env.text_styles
-        latex_styles = self.document.settings.env.latex_styles
+        text_styles = self.builder.config.text_styles
+        latex_styles = self.builder.config.latex_styles
 
         # Get classes and find matching LaTeX commands
         classes = node.get('classes', [])
@@ -108,9 +102,10 @@ class CustomLaTeXTranslator(LaTeXTranslator):
         self._opened_environments = []
 
         for cls in classes:
-            if cls in text_styles:
-                latex_style = latex_styles[text_styles[cls]]
-                self.body.append(latex_styles)
+            if cls in latex_styles:
+                latex_style = latex_styles[cls]
+                print(f"{cls} -> {latex_style}")
+                self.body.append(latex_style)
                 self._opened_environments.append(cls)
 
         super().visit_inline(node)
@@ -151,7 +146,7 @@ def setup(app):
     app.add_config_value('text_formatting_roles', {}, 'env')
 
     # Connect to configuration processing
-    app.connect('config-inited', add_preamble)
+    app.connect('config-inited', add_packages)
     app.connect('config-inited', process_formatting_roles)
 
     # Add CSS for HTML output

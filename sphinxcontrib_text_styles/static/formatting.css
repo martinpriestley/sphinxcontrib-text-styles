@@ -7,16 +7,46 @@
 
 /* Text Color classes */
 .text-red { color: red; }
-.text-blue { color: blue; }
 .text-green { color: green; }
+.text-blue { color: blue; }
+.text-cyan { color: cyan; }
+.text-magenta { color: magenta; }
 .text-yellow { color: yellow; }
+.text-black { color: black; }
+.text-gray { color: gray; }
+.text-white { color: white; }
+.text-darkgray { color: darkgray; }
+.text-lightgray { color: lightgray; }
+.text-brown { color: brown; }
+.text-lime { color: lime; }
+.text-olive { color: olive; }
+.text-orange { color: orange; }
+.text-pink { color: pink; }
+.text-purple { color: purple; }
+.text-teal { color: teal; }
+.text-violet { color: violet; }
 
 /* Background Color classes */
-.bg-red { background-color: #ffdddd; }
-.bg-blue { background-color: #ddeeff; }
-.bg-green { background-color: #ddffdd; }
-.bg-yellow { background-color: #ffffdd; }
-.bg-grey { background-color: #f0f0f0; }
+.bg-red { background-color: red; opacity: 0.5; }
+.bg-green { background-color: green; opacity: 0.5; }
+.bg-blue { background-color: blue; opacity: 0.5; }
+.bg-cyan { background-color: cyan; opacity: 0.5; }
+.bg-magenta { background-color: magenta; opacity: 0.5; }
+.bg-yellow { background-color: yellow; opacity: 0.5; }
+.bg-black { background-color: black; }
+.bg-gray { background-color: gray; opacity: 0.5; }
+.bg-white { background-color: white; opacity: 0.5; }
+.bg-darkgray { background-color: darkgray; opacity: 0.5; }
+.bg-lightgray { background-color: lightgray; opacity: 0.5; }
+.bg-brown { background-color: brown; opacity: 0.5; }
+.bg-lime { background-color: lime; opacity: 0.5; }
+.bg-olive { background-color: olive; opacity: 0.5; }
+.bg-orange { background-color: orange; opacity: 0.5; }
+.bg-pink { background-color: pink; opacity: 0.5; }
+.bg-purple { background-color: purple; opacity: 0.5; }
+.bg-teal { background-color: teal; opacity: 0.5; }
+.bg-violet { background-color: violet; opacity: 0.5; }
+
 
 /* Text style classes */
 .text-strike { text-decoration: line-through; }
