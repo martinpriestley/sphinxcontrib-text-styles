@@ -31,13 +31,22 @@ def create_role_mapping(app, config):
         'white', 'darkgray', 'lightgray', 'brown', 'lime', 'olive', 'orange',
         'pink', 'purple', 'teal', 'violet' ]
 
-    # Default roles
-    default_roles = {
+    # Roles
+    role_mapping = {
         'text-strike'    : ['text-strike'],
         'text-mono'      : ['text-mono'],
         'text-underline' : ['text-underline'],
         'text-bold'      : ['text-bold'],
         'text-italic'    : ['text-italic'],
+    }
+
+    # Implementation of styles in CSS
+    css_styles = {
+        'text-strike'    : f"text-decoration: line-through;",
+        'text-mono'      : f"font-family: monospace;",
+        'text-underline' : f"text-decoration: underline;",
+        'text-bold'      : f"font-weight: bold;",
+        'text-italic'    : f"font-style: italic;",
     }
 
     # Implementation of styles in Latex markup
@@ -49,27 +58,52 @@ def create_role_mapping(app, config):
         'text-italic'    : r'\textit{',
     }
 
+    # Add colours
     for c in colours:
-        default_roles[f"text-{c}"] = [f"text-{c}"]
-        default_roles[f"bg-{c}"]   = [f"bg-{c}"]
-        latex_styles[f"text-{c}"]  = f"\\textcolor{{{c}}}{{"
-        latex_styles[f"bg-{c}"]    = f"\\colorbox{{{c}!20}}{{"
+        role_mapping[f"text-{c}"] = [f"text-{c}"]
+        role_mapping[f"bg-{c}"]   = [f"bg-{c}"]
+        latex_styles[f"text-{c}"] = f"\\textcolor{{{c}}}{{"
+        latex_styles[f"bg-{c}"]   = f"\\colorbox{{{c}!20}}{{"
+        css_styles  [f"text-{c}"] = f"color: {c};"
+        css_styles  [f"bg-{c}"]   = f"background-color: {c}; opacity: 0.5;"
 
     # Some colours look poor when faded
-    latex_styles["bg-black"]    = r'\colorbox{black}{'
+    latex_styles["bg-black"] = r'\colorbox{black}{'
+    css_styles["bg-black"]   = "background-color: black;"
 
-    # Merge default roles with user-defined roles
-    role_mapping = default_roles.copy()
+    # Allow users to override or add new styles
+    user_styles = config.text_styles_styles or {}
+    for style,(css,latex) in user_styles.items():
+        role_mapping[style] = [style]
+        css_styles[style] = css
+        latex_styles[style] = latex
 
     # Allow users to override or add new roles
-    user_roles = config.text_formatting_roles or {}
+    user_roles = config.text_styles_roles or {}
+    for role,styles in user_roles.items():
+        for s in styles:
+            if s not in css_styles:
+                print("Error: custom role {role} references non-existant style {s}")
     role_mapping.update(user_roles)
 
     # Store the mapping for use in translator
     app.config.text_styles = role_mapping
     app.config.latex_styles = latex_styles
+    app.config.css_styles = css_styles
 
     return role_mapping
+
+
+def create_css(app, execution):
+    if app.builder.name != "html":
+        return
+
+    path = os.path.join(app.builder.outdir, '_static', 'text_styles.css')
+
+    with open(path, "w") as fh:
+        for style,css in app.config.css_styles.items():
+            fh.write(f".{style} {{ {css} }}\n")
+
 
 # ==============================================================================
 # Latex bits
@@ -122,11 +156,6 @@ class CustomLaTeXTranslator(LaTeXTranslator):
 # Setup and role registration
 # ==============================================================================
 
-def copy_css(app):
-    sphinx.util.fileutil.copy_asset(
-        os.path.join(os.path.dirname(__file__), 'static', 'formatting.css'),
-        os.path.join(app.builder.outdir, '_static'))
-
 def process_formatting_roles(app, config):
     """
     Process and register formatting roles dynamically
@@ -143,15 +172,16 @@ def setup(app):
     Set up the Sphinx extension with custom roles and configuration
     """
     # Add configuration value for custom roles
-    app.add_config_value('text_formatting_roles', {}, 'env')
+    app.add_config_value('text_styles_roles', {}, 'env')
+    app.add_config_value('text_styles_styles', {}, 'env')
 
     # Connect to configuration processing
     app.connect('config-inited', add_packages)
     app.connect('config-inited', process_formatting_roles)
 
     # Add CSS for HTML output
-    app.add_css_file('formatting.css')
-    app.connect('builder-inited', copy_css)
+    app.add_css_file('text_styles.css')
+    app.connect('build-finished', create_css)
 
     # Use custom translator for Latex
     app.set_translator('latex', CustomLaTeXTranslator, override=True)

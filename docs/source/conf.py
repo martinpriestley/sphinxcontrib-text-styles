@@ -10,10 +10,16 @@ extensions = [
 ]
 
 # Extension-specific configuration
-text_formatting_roles = {
+
+text_styles_styles = {
+    'text-small-caps' : ("font-variant: small-caps;", r'\textsc{'),
+}
+
+text_styles_roles = {
     'important': ['text-red', 'text-italic', 'text-bold', 'text-underline', 'bg-black'],
     'success': ['text-green'],
     'error': ['text-red'],
+    'legal-term' : ['text-small-caps', 'text-bold'],
 }
 
 # HTML and PDF theme
