@@ -2,9 +2,18 @@
 Sphinx Text Styles Extension
 ============================
 
-sphinxcontrib_text_styles is an extension providing a number of basic text style
-roles, plus the ability to create additional styles, and alias roles with
-meaningful names. Styles have both HTML (CSS) and PDF (Latex) implementations.
+.. contents:: Contents
+   :depth: 1
+   :local:
+   :backlinks: none
+
+
+Introduction
+============
+
+This extension provides a number of basic text style roles, plus the ability to
+create additional styles, and alias roles with meaningful names. Styles have
+both HTML (CSS) and PDF (Latex) implementations.
 
 The aim is for users to be able to define character styles meaningful to their
 document, and have them render in HTML and PDF, without having to author CSS and
@@ -41,6 +50,9 @@ Latex markup themselves.
    Best to use a role descriptive of the *thing*, and define how the thing gets
    formatted elsewhere, and only once.
 
+.. warning::
+  How good any of this looks is likely to be affected by your choice of theme!
+
 
 Built-in Styles
 ===============
@@ -65,101 +77,61 @@ Basic Text Styles
 - :text-strike:`Strikethrough text`
 - :text-underline:`Underlined text`
 
-Text Colors
------------
+Text and Background Colors
+--------------------------
+
+The built in list of colours comes from
+https://www.overleaf.com/learn/latex/Using_colors_in_LaTeX#Named_colors_provided_by_the_xcolor_package,
+all of which are recognised by both Latex and CSS.
+
+Further colours are possible with :ref:`custom_styles`.
 
 .. code-block:: rst
 
-    :text-red:`Red text`
-    :text-green:`Green text`
-    :text-blue:`Blue text`
-    :text-cyan:`Cyan text`
-    :text-magenta:`Magenta text`
-    :text-yellow:`Yellow text`
-    :text-black:`Black text`
-    :text-gray:`Gray text`
-    :text-white:`White text`
-    :text-darkgray:`Darkgray text`
-    :text-lightgray:`Lightgray text`
-    :text-brown:`Brown text`
-    :text-lime:`Lime text`
-    :text-olive:`Olive text`
-    :text-orange:`Orange text`
-    :text-pink:`Pink text`
-    :text-purple:`Purple text`
-    :text-teal:`Teal text`
-    :text-violet:`Violet text`
+    :text-red:`Red text` :bg-red:`Red background`
+    :text-green:`Green text` :bg-green:`Green background`
+    :text-blue:`Blue text` :bg-blue:`Blue background`
+    :text-cyan:`Cyan text` :bg-cyan:`Cyan background`
+    :text-magenta:`Magenta text` :bg-magenta:`Magenta background`
+    :text-yellow:`Yellow text` :bg-yellow:`Yellow background`
+    :text-black:`Black text` :bg-black:`Black background`
+    :text-gray:`Gray text` :bg-gray:`Gray background`
+    :text-white:`White text` :bg-white:`White background`
+    :text-darkgray:`Darkgray text` :bg-darkgray:`Darkgray background`
+    :text-lightgray:`Lightgray text` :bg-lightgray:`Lightgray background`
+    :text-brown:`Brown text` :bg-brown:`Brown background`
+    :text-lime:`Lime text` :bg-lime:`Lime background`
+    :text-olive:`Olive text` :bg-olive:`Olive background`
+    :text-orange:`Orange text` :bg-orange:`Orange background`
+    :text-pink:`Pink text` :bg-pink:`Pink background`
+    :text-purple:`Purple text` :bg-purple:`Purple background`
+    :text-teal:`Teal text` :bg-teal:`Teal background`
+    :text-violet:`Violet text` :bg-violet:`Violet background`
 
-
-- :text-red:`Red text`
-- :text-green:`Green text`
-- :text-blue:`Blue text`
-- :text-cyan:`Cyan text`
-- :text-magenta:`Magenta text`
-- :text-yellow:`Yellow text`
-- :text-black:`Black text`
-- :text-gray:`Gray text`
-- :text-white:`White text`
-- :text-darkgray:`Darkgray text`
-- :text-lightgray:`Lightgray text`
-- :text-brown:`Brown text`
-- :text-lime:`Lime text`
-- :text-olive:`Olive text`
-- :text-orange:`Orange text`
-- :text-pink:`Pink text`
-- :text-purple:`Purple text`
-- :text-teal:`Teal text`
-- :text-violet:`Violet text`
-
-Background Colors
------------------
-
-.. code-block:: rst
-
-    :bg-red:`Red background`
-    :bg-green:`Green background`
-    :bg-blue:`Blue background`
-    :bg-cyan:`Cyan background`
-    :bg-magenta:`Magenta background`
-    :bg-yellow:`Yellow background`
-    :bg-black:`Black background`
-    :bg-gray:`Gray background`
-    :bg-white:`White background`
-    :bg-darkgray:`Darkgray background`
-    :bg-lightgray:`Lightgray background`
-    :bg-brown:`Brown background`
-    :bg-lime:`Lime background`
-    :bg-olive:`Olive background`
-    :bg-orange:`Orange background`
-    :bg-pink:`Pink background`
-    :bg-purple:`Purple background`
-    :bg-teal:`Teal background`
-    :bg-violet:`Violet background`
-
-- :bg-red:`Red background`
-- :bg-green:`Green background`
-- :bg-blue:`Blue background`
-- :bg-cyan:`Cyan background`
-- :bg-magenta:`Magenta background`
-- :bg-yellow:`Yellow background`
-- :bg-black:`Black background`
-- :bg-gray:`Gray background`
-- :bg-white:`White background`
-- :bg-darkgray:`Darkgray background`
-- :bg-lightgray:`Lightgray background`
-- :bg-brown:`Brown background`
-- :bg-lime:`Lime background`
-- :bg-olive:`Olive background`
-- :bg-orange:`Orange background`
-- :bg-pink:`Pink background`
-- :bg-purple:`Purple background`
-- :bg-teal:`Teal background`
-- :bg-violet:`Violet background`
+- :text-red:`Red text` :bg-red:`Red background`
+- :text-green:`Green text` :bg-green:`Green background`
+- :text-blue:`Blue text` :bg-blue:`Blue background`
+- :text-cyan:`Cyan text` :bg-cyan:`Cyan background`
+- :text-magenta:`Magenta text` :bg-magenta:`Magenta background`
+- :text-yellow:`Yellow text` :bg-yellow:`Yellow background`
+- :text-black:`Black text` :bg-black:`Black background`
+- :text-gray:`Gray text` :bg-gray:`Gray background`
+- :text-white:`White text` :bg-white:`White background`
+- :text-darkgray:`Darkgray text` :bg-darkgray:`Darkgray background`
+- :text-lightgray:`Lightgray text` :bg-lightgray:`Lightgray background`
+- :text-brown:`Brown text` :bg-brown:`Brown background`
+- :text-lime:`Lime text` :bg-lime:`Lime background`
+- :text-olive:`Olive text` :bg-olive:`Olive background`
+- :text-orange:`Orange text` :bg-orange:`Orange background`
+- :text-pink:`Pink text` :bg-pink:`Pink background`
+- :text-purple:`Purple text` :bg-purple:`Purple background`
+- :text-teal:`Teal text` :bg-teal:`Teal background`
+- :text-violet:`Violet text` :bg-violet:`Violet background`
 
 .. _custom_roles:
 
-Customizing Roles
-=================
+Custom Roles
+============
 
 In your ``conf.py``, you can define roles that use one or more of the basic
 styles:
@@ -184,8 +156,10 @@ You can then use these in your documentation:
 - :error:`Critical error occurred`
 - :important:`I can't emphasise this enough`
 
-Customizing Styles
-==================
+.. _custom_styles:
+
+Custom Styles
+=============
 
 In your ``conf.py`` you can define additional style roles with their CSS and
 Latex implementations, which can then be used directly or as part of your custom
@@ -222,3 +196,6 @@ meaning multiple attributes can be set.
 The Latex goes directly in the markup: ``<your-Latex-here>Original text}``. Note
 the single closing ``}``. You CANNOT use multiple Latex tags in a single style
 (but you can stack them up by using multiple styles in a custom role).
+
+If you're only interested in one builder you can leave the implementation for
+the other blank.

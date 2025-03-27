@@ -35,5 +35,3 @@ pdf:
 	@$(MAKE) -C "$(BUILDDIR)/latex" all-pdf
 	@echo
 	@echo "Build finished. The PDF is in $(BUILDDIR)/latex."
-
-# Additional targets can be added as needed

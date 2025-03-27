@@ -23,5 +23,9 @@ text_styles_roles = {
 }
 
 # HTML and PDF theme
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 latex_engine = 'pdflatex'
+
+html_theme_options = {
+    'navigation_depth': -1,
+}
