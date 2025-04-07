@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Sphinx extension for custom text formatting roles"
 readme = "README.md"
 authors = [
-    {name = "Martin Priestley", email = "martin@rainlabs.ai"}
+    {name = "Martin Priestley"}
 ]
 license = "MIT"
 classifiers = [
@@ -28,7 +28,7 @@ dependencies = [
 sphinxcontrib_text_styles = "sphinxcontrib_text_styles.formatting:setup"
 
 [project.urls]
-Homepage = "https://github.com/RainUKLabs/sphinxcontrib-text-styles"
+Homepage = "https://github.com/martinpriestley/sphinxcontrib-text-styles"
 
 [tool.setuptools]
 packages = ["sphinxcontrib_text_styles"]

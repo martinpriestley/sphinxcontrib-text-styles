@@ -53,6 +53,23 @@ Latex markup themselves.
 .. warning::
   How good any of this looks is likely to be affected by your choice of theme!
 
+Installation
+============
+
+Install the extension in your Python environment:
+
+.. code-block::
+
+  pip install sphinxcontrib-text-styles
+
+Enable the extension in the ``conf.py`` of your document:
+
+.. code-block:: python
+
+  extensions = [
+      'sphinxcontrib_text_styles',
+      ...
+  ]
 
 Built-in Styles
 ===============
@@ -199,3 +216,9 @@ the single closing ``}``. You CANNOT use multiple Latex tags in a single style
 
 If you're only interested in one builder you can leave the implementation for
 the other blank.
+
+Issues / Feedback
+=================
+
+Raise any bugs or suggested enhancements on the issue tracker:
+https://github.com/martinpriestley/sphinxcontrib-text-styles/issues
