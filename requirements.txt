@@ -1,2 +1,5 @@
+# Requirements file for local builds of the doc, and for ReadTheDocs. These are
+# in addition to the dependencies of this package.
+
 sphinx-rtd-theme
 -e .

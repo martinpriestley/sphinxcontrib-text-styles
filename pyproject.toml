@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel", "setuptools-git-versioning"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "sphinxcontrib-text-styles"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Sphinx extension for custom text formatting roles"
 readme = "README.md"
 authors = [
@@ -33,3 +33,6 @@ Homepage = "https://github.com/martinpriestley/sphinxcontrib-text-styles"
 [tool.setuptools]
 packages = ["sphinxcontrib_text_styles"]
 include-package-data = true
+
+[tool.setuptools-git-versioning]
+enabled = true
