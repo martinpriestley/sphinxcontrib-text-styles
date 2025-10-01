@@ -120,7 +120,9 @@ def add_packages(app, filename):
         'listings',     # for monospace
     ]
     for package in packages:
-        app.add_latex_package(package)
+        # If the package is already added and we add it again, Sphinx will warn.
+        if not app.has_latex_package(package):
+            app.add_latex_package(package)
 
 class CustomLaTeXTranslator(LaTeXTranslator):
 
