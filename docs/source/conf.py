@@ -26,6 +26,11 @@ text_styles_roles = {
 html_theme = 'sphinx_rtd_theme'
 latex_engine = 'pdflatex'
 
+latex_elements = {
+  # Avoid blank page before each chapter
+  'extraclassoptions': 'openany,oneside'
+}
+
 html_theme_options = {
     'navigation_depth': -1,
 }

@@ -158,7 +158,7 @@ styles:
    text_styles_roles = {
        'success': ['text-green'],
        'error': ['text-red'],
-       'important': ['text-red', 'text-italic', 'text-bold', 'text-underline'],
+       'important': ['text-red', 'text-italic', 'text-bold', 'text-underline', 'bg-black'],
    }
 
 You can then use these in your documentation:
